@@ -1,94 +1,94 @@
-void receiver_initialize(void)
+void receiverInitialize(void)
 {
-  pinMode(channel_pins[0], INPUT);
-  pinMode(channel_pins[1], INPUT);
-  pinMode(channel_pins[2], INPUT);
-  pinMode(channel_pins[3], INPUT);
-  pinMode(channel_pins[4], INPUT);
-  pinMode(channel_pins[5], INPUT);
+  pinMode(channelPins[0], INPUT);
+  pinMode(channelPins[1], INPUT);
+  pinMode(channelPins[2], INPUT);
+  pinMode(channelPins[3], INPUT);
+//  pinMode(channelPins[4], INPUT);
+//  pinMode(channelPins[5], INPUT);
 
-  attachPCINT(digitalPinToPCINT(channel_pins[0]), receiverCh1, CHANGE);
-  attachPCINT(digitalPinToPCINT(channel_pins[1]), receiverCh2, CHANGE);
-  attachPCINT(digitalPinToPCINT(channel_pins[2]), receiverCh3, CHANGE);
-  attachPCINT(digitalPinToPCINT(channel_pins[3]), receiverCh4, CHANGE);
-  attachPCINT(digitalPinToPCINT(channel_pins[4]), receiverCh5, CHANGE);
-  attachPCINT(digitalPinToPCINT(channel_pins[5]), receiverCh6, CHANGE);
+  attachPCINT(digitalPinToPCINT(channelPins[0]), receiverCh1, CHANGE);
+  attachPCINT(digitalPinToPCINT(channelPins[1]), receiverCh2, CHANGE);
+  attachPCINT(digitalPinToPCINT(channelPins[2]), receiverCh3, CHANGE);
+  attachPCINT(digitalPinToPCINT(channelPins[3]), receiverCh4, CHANGE);
+//  attachPCINT(digitalPinToPCINT(channelPins[4]), receiverCh5, CHANGE);
+//  attachPCINT(digitalPinToPCINT(channelPins[5]), receiverCh6, CHANGE);
 }
 
 //channel 1
 void receiverCh1(void)
 {
-  receiver_now[0] = micros();
+  receiverNow[0] = micros();
 
-  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channel_pins[0]));
+  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channelPins[0]));
   if(trigger == RISING)
-    receiver_past[0] = receiver_now[0];
+    receiverPast[0] = receiverNow[0];
   else
-    receiver_input[0] = (receiver_now[0] - receiver_past[0]);
-    receiver_update_time[0] = millis();
+    receiverInput[0] = (receiverNow[0] - receiverPast[0]);
+    receiverUpdateTime[0] = millis();
 }
 
 //channel 2
 void receiverCh2(void)
 {
-  receiver_now[1] = micros();
+  receiverNow[1] = micros();
 
-  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channel_pins[1]));
+  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channelPins[1]));
   if(trigger == RISING)
-    receiver_past[1] = receiver_now[1];
+    receiverPast[1] = receiverNow[1];
   else
-    receiver_input[1] = (receiver_now[1] - receiver_past[1]);
-    receiver_update_time[1] = millis();
+    receiverInput[1] = (receiverNow[1] - receiverPast[1]);
+    receiverUpdateTime[1] = millis();
 }
 
 //channel 3
 void receiverCh3(void)
 {
-  receiver_now[2] = micros();
+  receiverNow[2] = micros();
 
-  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channel_pins[2]));
+  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channelPins[2]));
   if(trigger == RISING)
-    receiver_past[2] = receiver_now[2];
+    receiverPast[2] = receiverNow[2];
   else
-    receiver_input[2] = (receiver_now[2] - receiver_past[2]);
-    receiver_update_time[2] = millis();
+    receiverInput[2] = (receiverNow[2] - receiverPast[2]);
+    receiverUpdateTime[2] = millis();
 }
 
 //channel 4
 void receiverCh4(void)
 {
-  receiver_now[3] = micros();
+  receiverNow[3] = micros();
 
-  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channel_pins[3]));
+  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channelPins[3]));
   if(trigger == RISING)
-    receiver_past[3] = receiver_now[3];
+    receiverPast[3] = receiverNow[3];
   else
-    receiver_input[3] = (receiver_now[3] - receiver_past[3]);
-    receiver_update_time[3] = millis();
+    receiverInput[3] = (receiverNow[3] - receiverPast[3]);
+    receiverUpdateTime[3] = millis();
 }
 
-//channel 5
-void receiverCh5(void)
-{
-  receiver_now[4] = micros();
-
-  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channel_pins[4]));
-  if(trigger == RISING)
-    receiver_past[4] = receiver_now[4];
-  else
-    receiver_input[4] = (receiver_now[4] - receiver_past[4]);
-    receiver_update_time[4] = millis();
-}
-
-//channel 6
-void receiverCh6(void)
-{
-  receiver_now[5] = micros();
-
-  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channel_pins[5]));
-  if(trigger == RISING)
-    receiver_past[5] = receiver_now[5];
-  else
-    receiver_input[5] = (receiver_now[5] - receiver_past[5]);
-    receiver_update_time[5] = millis();
-}
+////channel 5
+//void receiverCh5(void)
+//{
+//  receiverNow[4] = micros();
+//
+//  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channelPins[4]));
+//  if(trigger == RISING)
+//    receiverPast[4] = receiverNow[4];
+//  else
+//    receiverInput[4] = (receiverNow[4] - receiverPast[4]);
+//    receiverUpdateTime[4] = millis();
+//}
+//
+////channel 6
+//void receiverCh6(void)
+//{
+//  receiverNow[5] = micros();
+//
+//  uint8_t trigger = getPinChangeInterruptTrigger(digitalPinToPCINT(channelPins[5]));
+//  if(trigger == RISING)
+//    receiverPast[5] = receiverNow[5];
+//  else
+//    receiverInput[5] = (receiverNow[5] - receiverPast[5]);
+//    receiverUpdateTime[5] = millis();
+//}
